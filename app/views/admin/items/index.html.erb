@@ -1,0 +1,25 @@
+<h2>商品一覧</h2>
+
+
+<!--↓右に配置・リンクライン消す-->
+<%= link_to "➕" , new_admin_item_path(@item) %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品ID</th>
+      <th colspan="2">商品名</th>
+      <th colspan=“3”>税抜価格</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+    <tr>
+      <td><%= item.id %></td>
+      <td><%= item.name %></td>
+      <td><%= item.price %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

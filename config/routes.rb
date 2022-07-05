@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   get 'homes/top'
 
+  # 会員側のルーティング設定
+
+
+  # 管理者側のルーティング設定
+  namespace :admin do
+    resources :items, only: [:new, :index, :show, :edit]
+end
+
 
 
 # 顧客用
