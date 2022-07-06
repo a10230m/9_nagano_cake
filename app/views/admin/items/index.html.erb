@@ -8,15 +8,15 @@
   <thead>
     <tr>
       <th>商品ID</th>
-      <th colspan="2">商品名</th>
-      <th colspan=“3”>税抜価格</th>
+      <th colspan="5">商品名</th>
+      <th>税抜価格</th>
     </tr>
   </thead>
 
   <tbody>
     <% @items.each do |item| %>
     <tr>
-      <td><%= item.id %></td>
+      <td><%= link_to item.name, admin_item_path(item.id) %></td>
       <td><%= item.name %></td>
       <td><%= item.price %></td>
     </tr>

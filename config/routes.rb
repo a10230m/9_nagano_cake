@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # 管理者側のルーティング設定
   namespace :admin do
-    resources :items, only: [:new, :index, :show, :edit]
+    resources :items, only: [:new, :create, :index, :show, :edit]
 end
 
 
