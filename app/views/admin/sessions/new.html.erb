@@ -1,6 +1,17 @@
+
+<%= image_tag 'logo_n04.png',size: "200x100" %>
+
+
+<%= link_to "About", home_about_path %>
+<%= link_to "商品一覧", admin_items_path %>
+<%= link_to "新規登録", new_admin_item_path %>
+<%= link_to "ログイン", new_customer_session_path %>
+
+
 <h2>管理者ログイン</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<!--<　%= form_with model: @user, url: user_session_path do |f| %>-->
 
   <div class="field">
     <%= f.label :メールアドレス %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'homes/top'
+  get 'home/about' => 'homes#about'
 
   # 会員側のルーティング設定
 
@@ -7,7 +8,8 @@ Rails.application.routes.draw do
   # 管理者側のルーティング設定
   namespace :admin do
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
-    resources :items, only: [:create, :index, :edit, :update]
+    resources :customers, only: [:create, :index, :edit, :update]
+
 
 end
 
