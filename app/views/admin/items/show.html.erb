@@ -2,34 +2,29 @@
 
 
 <div class="form-group">
-  <% @item.each do |item| %>
-    <% if @item.image.attached? %>
-      <%= image_tag @item.image(100,100) %>
-    <% else %>
-      <%= image_tag 'no_image', size: "200x200" %>
-    <% end %>
+  <!--each分は単数形のみには使用しない-->
+  <% if @item.image.attached? %>
+    <%= image_tag @item.image, size: "400x300" %>
+  <% else %>
+    <%= image_tag 'noimage', size: "400x300" %>
   <% end %>
 </div>
 
 <table class="table">
   <tbody>
-    <% @item.each do |item| %>
     <tr>
       <td>商品名</td>
-      <td><%= link_to @item.name, admin_item_path(item.id) %></td>
+      <td><%= @item.name %></td>
     </tr>
     <tr>
       <td>商品説明</td>
       <td><%= @item.introduction %></td>
     </tr>
     <tr>
-      <td>税込価格<br />（税抜価格）</td>
+      <td>税込価格（税抜価格）</td>
       <td><%= @item.price %>円</td>
     </tr>
-    <tr>
-      <td><%= @item.id %></td>
-      <td><%= @item.name %></td>
-    </tr>
-    <% end %>
   </tbody>
 </table>
+
+<%= link_to "編集する", edit_admin_item_path(@item) %>

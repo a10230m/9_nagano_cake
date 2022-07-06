@@ -14,17 +14,23 @@ class Admin::ItemsController < ApplicationController
   end
 
   def index
+    @new = Item.new
     @items = Item.all
-
-    # @item = Item.new
   end
 
   def show
     @item = Item.find(params[:id])
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
 
-
+  def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    redirect_to admin_item_path(@item.id)
+  end
 
 
   private
@@ -32,6 +38,7 @@ class Admin::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:image, :name, :introduction, :price)
   end
+
 
 
   def image_params

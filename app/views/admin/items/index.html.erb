@@ -2,8 +2,9 @@
 
 
 <!--↓右に配置・リンクライン消す-->
-<%= link_to "➕" , new_admin_item_path(@item) %>
+<%= link_to "➕" , new_admin_item_path(@new) %>
 
+<% @items.each do |item| %>
 <table class="table">
   <thead>
     <tr>
@@ -14,12 +15,11 @@
   </thead>
 
   <tbody>
-    <% @items.each do |item| %>
     <tr>
       <td><%= link_to item.name, admin_item_path(item.id) %></td>
       <td><%= item.name %></td>
       <td><%= item.price %></td>
     </tr>
-    <% end %>
   </tbody>
 </table>
+<% end %>
