@@ -1,6 +1,6 @@
 <h2>会員一覧</h2>
 
-<% @customers.each do |item| %>
+<% @customers.each do |customer| %>
 <table class="table">
   <thead>
     <tr>
@@ -14,7 +14,8 @@
   <tbody>
     <tr>
       <td><%= customer.id %></td>
-      <td><%= link_to customer.name, admin_customer_path(customer.id) %></td>
+      <td><%= customer.last_name %><%= customer.first_name %>
+        <!--< %= link_to customer.name, admin_customer_path(customer.id) %></td>-->
       <td><%= customer.email %></td>
       <td><%= customer.is_active %></td>
     </tr>
