@@ -1,18 +1,31 @@
-<h2>さんの会員詳細</h2>
-
+<h2><strong><%= @customer.last_name %><%= @customer.first_name %></strong>さんの会員詳細</h2>
 
 <!--< % @customers.each do |customer| %>-->
 <table class="table">
   <tbody>
     <tr>
-      <td>会員ID</td><td><%= @customer.id %></td><br />
-      <td>氏名</td><td><%= @customer.last_name %>　<%= @customer.first_name %></td><br />
-      <td>フリガナ</td><td><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td><br />
-      <td>郵便番号</td><%= @customer.postal_code %></td><br />
-      <td>住所</td><%= @customer.address %></td><br />
-      <td>電話番号</td><%= @customer.telephone_number %></td><br />
-      <td>メールアドレス</td><%= @customer.email %></td><br />
-      <td>会員ステータス</td><%= @customer.is_active %></td><br />
+      <td>会員ID</td><td><%= @customer.id %></td>
+    </tr>
+    <tr>
+      <td>氏名</td><td><%= @customer.last_name %>　<%= @customer.first_name %></td>
+    </tr>
+    <tr>
+      <td>フリガナ</td><td><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
+    </tr>
+    <tr>
+      <td>郵便番号</td><td><%= @customer.postal_code %></td>
+    </tr>
+    <tr>
+      <td>住所</td><td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <td>電話番号</td><td><%= @customer.telephone_number %></td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td><td><%= @customer.email %></td>
+    </tr>
+    <tr>
+      <td>会員ステータス</td><td><%= @customer.is_active %></td>
     </tr>
   </tbody>
 </table>
