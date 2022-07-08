@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  get 'homes/top'
-  get 'home/about' => 'homes#about'
+  
+  get '/top' => 'homes#top'
+  root to: 'homes#top'
+
+
+  get '/about' => 'homes#about'
 
   # 会員側のルーティング設定
 
@@ -11,6 +15,8 @@ Rails.application.routes.draw do
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
 
+  # namespace :public do
+    # resources :
 
 end
 
