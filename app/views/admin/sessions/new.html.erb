@@ -10,8 +10,10 @@
 
 <h2>管理者ログイン</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<!--< %= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>-->
+<%= form_with model: @admin, url: admin_sign_in_path, local: true do |form| %>
 <!--<　%= form_with model: @user, url: user_session_path do |f| %>-->
+  <%= render "admin/shared/links" %>
 
   <div class="field">
     <%= f.label :メールアドレス %>

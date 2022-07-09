@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   get '/top' => 'homes#top'
   root to: 'homes#top'
 
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # 管理者側のルーティング設定
   namespace :admin do
-    # 注文履歴一覧root ""
+    # 注文履歴一覧
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
 
