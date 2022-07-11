@@ -1,0 +1,16 @@
+
+<div class="form-group">
+  <!--each分は単数形のみには使用しない-->
+  <% if @item.image.attached? %>
+    <%= image_tag @item.image, size: "400x300" %>
+  <% else %>
+    <%= image_tag 'noimage', size: "400x300" %>
+  <% end %>
+</div>
+
+<div class="item">
+  <%= @item.name %><br />
+  <%= @item.introduction %><br />
+  ￥<%= @item.price %>（税込）
+
+</div>
