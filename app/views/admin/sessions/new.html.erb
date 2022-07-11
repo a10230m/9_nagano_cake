@@ -2,18 +2,17 @@
 <%= image_tag 'logo_n04.png',size: "200x100" %>
 
 
-<%= link_to "About", home_about_path %>
+<%= link_to "About", about_path %>
 <%= link_to "商品一覧", admin_items_path %>
-<%= link_to "新規登録", new_admin_item_path %>
-<%= link_to "ログイン", new_customer_session_path %>
+<%= link_to "新規登録", new_customer_registration_path %>
+<!--if admin・カスタマーわける-->
+<%= link_to "ログイン", admin_session_path %>
 
 
 <h2>管理者ログイン</h2>
 
-<!--< %= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>-->
-<%= form_with model: @admin, url: admin_sign_in_path, local: true do |form| %>
-<!--<　%= form_with model: @user, url: user_session_path do |f| %>-->
-  <%= render "admin/shared/links" %>
+<%= form_with model: @admin, url: new_admin_session_path, local: true do |f| %>
+
 
   <div class="field">
     <%= f.label :メールアドレス %>
@@ -35,6 +34,6 @@
   <div class="actions">
     <%= f.submit "ログイン" %>
   </div>
-<% end %>
 
 <%= render "admin/shared/links" %>
+<% end %>
