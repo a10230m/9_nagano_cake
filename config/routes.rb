@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get '/about' => 'homes#about'
 
-  get '/customers/mypage' => 'public/customers#show'
+  # get '/customers/mypage' => 'public/customers#show'
 
 
 
