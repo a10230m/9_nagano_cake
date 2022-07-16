@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get '/about' => 'homes#about'
 
-  # get '/customers/mypage' => 'public/customers#show'
+  get '/customers/mypage' => 'public/customers#show'
 
 
 
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
-    resources :customers, only: [:index, :mypage, :show, :edit, :update]
+    resources :customers, only: [:index, :edit, :update, :destroy]
     resources :items, only: [:index, :show, :edit, :update]
 
   end

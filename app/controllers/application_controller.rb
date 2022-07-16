@@ -2,15 +2,11 @@ class ApplicationController < ActionController::Base
 
 
   # before_action :authenticate_customer!, except: [:top, :about]
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  # before_action :configure_permitted_parameters, if: :devise_controller?
 
 
   protected
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
-
-  end
 
 
 
@@ -20,7 +16,7 @@ class ApplicationController < ActionController::Base
     when Admin
       admin_items_path
     when Customer
-      public_customer_path
+      customers_mypage_path
     end
   end
 

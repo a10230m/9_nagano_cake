@@ -1,12 +1,12 @@
 
-<%= image_tag 'logo_n04.png',size: "200x100" %>
+<!--< %= image_tag 'logo_n04.png',size: "200x100" %>-->
 
 
-<%= link_to "About", about_path %>
-<%= link_to "商品一覧", admin_items_path %>
-<%= link_to "新規登録", new_customer_registration_path %>
+<!--< %= link_to "About", about_path %>-->
+<!--< %= link_to "商品一覧", admin_items_path %>-->
+<!--< %= link_to "新規登録", new_customer_registration_path %>-->
 <!--if admin・カスタマーわける-->
-<%= link_to "ログイン", admin_session_path %>
+<!--< %= link_to "ログイン", admin_session_path %>-->
 
 
 <h2>管理者ログイン</h2>
@@ -32,7 +32,7 @@
   <!--% end %>-->
 
   <div class="actions">
-    <%= f.submit "ログイン" %>
+    <%= f.submit "ログイン", class: "btn btn-primary" %>
   </div>
 
 <%= render "admin/shared/links" %>

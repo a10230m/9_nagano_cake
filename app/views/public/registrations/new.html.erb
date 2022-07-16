@@ -1,6 +1,7 @@
 <h2>新規会員登録</h2>
 
-<%= form_with model: @customer, url: new_customer_session_path, local: true do |f| %>
+<!--< %= form_with model: customer, url: public_customer_path(), local: true do |f| %>-->
+<%= form_with model: resource, as: resource_name, url: registration_path(resource_name) do |f| %>
 
 
   <div class="field">
@@ -49,7 +50,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "新規登録" %>
+    <%= f.submit "新規登録", class: "btn btn-success" %>
   </div>
 
   <h2>既に登録済みの方</h2>
