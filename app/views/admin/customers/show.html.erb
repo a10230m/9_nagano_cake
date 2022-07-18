@@ -25,11 +25,19 @@
       <td>メールアドレス</td><td><%= @customer.email %></td>
     </tr>
     <tr>
-      <td>会員ステータス</td><td><%= @customer.is_active %></td>
+      <td>会員ステータス</td>
+      <td>
+        <% if @customer.is_active %>
+          <p class="font-weight-bold text-success">有効</p>
+        <% else %>
+          退会
+        <% end %>
+        <!--< %= @customer.is_active %></td>-->
     </tr>
   </tbody>
 </table>
 <!--< % end %>-->
 
-<%= link_to "編集する", edit_admin_customer_path(@customer) %>
-<!--注文一覧のリンク先いれる<　%= link_to "注文履歴一覧を見る",  %>-->
+<%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success" %>
+<br /><br />
+注文履歴一覧を見る<!--注文一覧のリンク先いれる<　%= link_to "注文履歴一覧を見る",  %>-->

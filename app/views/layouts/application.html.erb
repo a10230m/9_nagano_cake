@@ -28,22 +28,22 @@
             <li class="nav-item">
 
               <% if current_customer %>
-                <%= link_to "マイページ", customers_mypage_path %>
-                <%= link_to "商品一覧", admin_items_path %>
-                カート<!--<　%= link_to "カート",  %>-->
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+                <%= link_to "マイページ", customers_mypage_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "商品一覧", public_items_path, class: "btn btn-outline-secondary" %>
+                <!--<　%= link_to "カート",  %>--><button type="button" class="btn btn-outline-secondary">カート</button>
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary" %>
               <% elsif current_admin %>
-                <%= link_to "商品一覧", admin_items_path %>
-                <%= link_to "会員一覧", admin_customers_path %>
-                注文履歴一覧<!--<　%= link_to "注文履歴一覧",  %>-->
-                ジャンル一覧<!--<　%= link_to "ジャンル一覧",  %>-->
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+                <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-secondary" %>
+                <!--<　%= link_to "注文履歴一覧",  %>--><button type="button" class="btn btn-outline-secondary">注文履歴一覧</button>
+                <!--<　%= link_to "ジャンル一覧",  %>--><button type="button" class="btn btn-outline-secondary">ジャンル一覧</button>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %>
               <% else %>
-                <%= link_to "About", about_path %>
-                <%= link_to "商品一覧", public_items_path %>
-                <%= link_to "新規登録", new_customer_registration_path %>
+                <%= link_to "About", about_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "商品一覧", public_items_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-secondary" %>
                 <!--if admin・カスタマーわける-->
-                <%= link_to "ログイン", customer_session_path %>
+                <%= link_to "ログイン", customer_session_path, class: "btn btn-outline-secondary" %>
               <% end %>
             </li>
             </ul>

@@ -1,25 +1,51 @@
-<h2>商品一覧</h2>
+
+<div class="container">
+  <h2>商品一覧</h2>
 
 
-<!--↓右に配置・リンクライン消す-->
-<%= link_to "➕" , new_admin_item_path(@new) %>
+<div class="d-flex flex-row-reverse bd-highlight">
+  <div class="p-2 bd-highlight">
+    <%= link_to "➕" , new_admin_item_path(@new) %>
+  </div>
+</div>
 
-<% @items.each do |item| %>
-<table class="table">
-  <thead>
-    <tr>
-      <th>商品ID</th>
-      <th colspan="5">商品名</th>
-      <th>税抜価格</th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <tr>
-      <td><%= item.id %></td>
-      <td><%= link_to item.name, admin_item_path(item.id) %></td>
-      <td><%= item.price %></td>
-    </tr>
-  </tbody>
-</table>
-<% end %>
+
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+      　<th scope="col">商品ID</th>
+      　<th scope="col">商品名</th>
+      　<th scope="col">税抜価格</th>
+    　</tr>
+  　</thead>
+
+  　<tbody>
+    　<% @items.each do |item| %>
+    　<tr>
+      　<td>
+      　   <div class="item_id">
+      　     <%= item.id %>
+      　   </div>
+        </td>
+      　<td>
+      　   <div class="item_name">
+      　     <%= link_to item.name, admin_item_path(item.id) %>
+      　   </div>
+  　     </td>
+　      <td>
+　        <div class="item_price">
+　          <%= item.price %>
+　        </div>
+　      </td>
+　    <% end %>
+  　</tbody>
+　</table>
+　<div class="d-flex justify-content-center">
+　  <%= paginate @items %>
+　</div>
+</div>
+
+</div>
