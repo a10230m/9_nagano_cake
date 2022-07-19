@@ -1,1 +1,32 @@
-<h2>商品一覧（全　件）</h2>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <p class="text"><span class="text_1">商品一覧</span><span class="text_number"> (全<%= @item_count %>件)</span></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <% @items.each do |item| %>
+    <div class="col-md-3 px-3">
+      <div class="image">
+        <% if item.image.attached? %>
+          <%= image_tag item.image, size: "400x300", class: "item-image" %>
+        <% else %>
+          <%= image_tag 'noimage', size: "400x300", class: "item-image" %>
+        <% end %>
+      </div>
+      <%= item.name %><br />
+      <%= item.price %>
+    </div>
+    <% end %>
+  </div>
+
+　<div class="d-flex justify-content-center">
+    <%= paginate @items %>
+ </div>
+</div>

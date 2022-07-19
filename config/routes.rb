@@ -34,10 +34,14 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
-    resources :customers, only: [:index, :edit, :update, :destroy]
+    resources :customers, only: [:index, :edit, :update, :destroy, :withdraw]
     resources :items, only: [:index, :show, :edit, :update]
 
   end
+
+  get '/customers/confirm' => 'public/customers#confirm', as: 'confirm'
+
+  patch '/customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
 
 
 

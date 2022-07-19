@@ -1,1 +1,53 @@
 @import '~bootstrap/scss/bootstrap';
+
+
+
+*{
+    box-sizing: border-box; /*余白や線を幅や高さに含める*/
+}
+
+body {
+  border: 2px dotted #8c8b8b;
+  margin: 20px;
+}
+
+.header {
+  border-bottom: 2px dotted #8c8b8b;
+}
+
+
+
+.text1 {
+  width: 25em;
+  margin: 0 auto;
+}
+
+.text_1 {
+  font-size: large;
+}
+
+.text_number {
+  font-size: medium;
+}
+
+.col-md-auto {
+  margin: 40px;
+}
+
+.col {
+  margin: 20px;
+}
+
+.image {
+  height: 60%;
+}
+
+.item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+footer {
+  border-top: 2px dotted #8c8b8b;
+}
