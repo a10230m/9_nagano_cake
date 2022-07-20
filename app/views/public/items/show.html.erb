@@ -1,16 +1,49 @@
-
-<div class="form-group">
-  <!--each分は単数形のみには使用しない-->
-  <% if @item.image.attached? %>
-    <%= image_tag @item.image, size: "400x300" %>
-  <% else %>
-    <%= image_tag 'noimage', size: "400x300" %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <% if @item.image.attached? %>
+          <%= image_tag @item.image, size: "400x300" %>
+        <% else %>
+          <%= image_tag 'noimage', size: "400x300" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-6">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td><%= @item.name %></td>
+          </tr>
+          <tr>
+            <td><%= @item.introduction %></td>
+          </tr>
+          <tr>
+           <td>¥<%= @item.price %>（税込）</td>
+          </tr>
+          <tr>
+            <td>
+              <form class="form-inline">
+                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelect">
+                  <option selected>個数選択</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+                <%= link_to "カートに入れる", public_cart_items_path, class: "btn btn-success" %>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
-<div class="item">
-  <%= @item.name %><br />
-  <%= @item.introduction %><br />
-  ￥<%= @item.price %>（税込）
-
-</div>

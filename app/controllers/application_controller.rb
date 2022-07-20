@@ -40,6 +40,17 @@ class ApplicationController < ActionController::Base
     # end
   # end
 
+  # protect_from_forgery with: :exception
+
+  helper_method :current_cart_items
+
+  # def current_cart_items
+  #   current_customer
+  #     # ユーザーとカートの紐付け
+  #     current_cart_items = current_customer || current_customer.create_cart_items!
+
+  # end
+
 
 end
 
