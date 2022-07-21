@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="row">
     <div class="col-6">
@@ -37,7 +38,16 @@
                   <option value="9">9</option>
                   <option value="10">10</option>
                 </select>
-                <%= link_to "カートに入れる", public_cart_items_path, class: "btn btn-success" %>
+                <%= form_with model: @item, url: public_customer_path(@customer) do |f| %>
+                  <% if customer_signed_in? %>
+                    <%= f.hidden_field :customer_id, :value => current_customer.id %>
+                  <% end %>
+                    <%= f.hidden_field :item_id, :value => @item.id %>
+                    <%= link_to public_cart_items_path, class: "btn btn-success" do %>
+                      <%= f.submit "カートに入れる", class: "btn btn-success" %>
+                    <% end %>
+                <% end %>
+
               </form>
             </td>
           </tr>

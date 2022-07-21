@@ -30,16 +30,16 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :customers, only: [:index, :edit, :update, :destroy, :withdraw]
-    resources :items, only: [:index, :show, :edit, :update]
+    resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
   end
 
   get '/customers/mypage' => 'public/customers#show'
   get '/customers/confirm' => 'public/customers#confirm', as: 'confirm'
   patch '/customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
-  
-  
-  
+
+
+
 
 
 

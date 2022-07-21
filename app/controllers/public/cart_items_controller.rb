@@ -1,50 +1,30 @@
 class Public::CartItemsController < ApplicationController
 
-
-  def index
-    @cart_items = current_cart_items.includes([:item])
-    # @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
+    def create
+    # @cart_itemを定義（find_byでどの情報のアイテムを持ってくるのかパラメータを参考に記述）
+    @cart_item = CartItem.find_by(item_id: params[:cart_item][:item_id], customer_id: current_customer.id)
+    #初めて対象商品をカートに追加する場合
+      if @cart_item.blank?
+        @cart_item = CartItem.new(cart_items_params)
+      end
+    #すでに追加する商品がカートにある場合
+    @cart_item.amount += params[:cart_item][:amount].to_i
+    @cart_item.customer_id = current_customer.id
+    @cart_item.save
+    redirect_to cart_items_path
   end
- # アイテムの追加
-  def add
-    @cart_item ||= current_cart_items.build(product_id: params[:item_id])
-    @cart_item.quantity += params[:quantity].to_i
-    if  @cart_item.save
-      flash[:notice] = '商品が追加されました。'
-      redirect_to public_cart_items_path
-    else
-      flash[:alert] = '商品の追加に失敗しました。'
-      redirect_to public_item_path(params[:item_id])
+
+
+
+    # def index
+    #   @cart_items = current_customer.cart_items.all
+    #   @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
+    # end
+
+    private
+
+    def cart_item_params
+      params.require(:cart_item).permit(:item_id, :amount)
     end
-  end
-
-# アイテムの更新
-  def update
-    if @cart_item.update(quantity: params[:quantity].to_i)
-      flash[:notice] = 'カート内のギフトが更新されました'
-    else
-      flash[:alert] = 'カート内のギフトの更新に失敗しました'
-    end
-    redirect_to public_cart_items_path
-  end
-
-  # アイテムの削除
-  def destroy
-    if @cart_item.destroy
-      flash[:notice] = 'カート内のギフトが削除されました'
-    else
-      flash[:alert] = '削除に失敗しました'
-    end
-    redirect_to public_cart_items_path
-  end
-
-
-  private
-
-  def setup_cart_item!
-    @cart_item = current_cart_items.find_by(item_id: params[:item_id])
-  end
-
-
 
 end
