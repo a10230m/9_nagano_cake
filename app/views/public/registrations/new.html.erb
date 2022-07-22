@@ -1,63 +1,85 @@
-<%= flash[:notice] %>
+<%= flash[:notice_taikai] %>
 <br />
-<br />
-<h2>新規会員登録</h2>
+
+<div class="container">
+  <h3>新規会員登録</h3>
+</div>
 
 <!--< %= form_with model: customer, url: public_customer_path(), local: true do |f| %>-->
 <%= form_with model: resource, as: resource_name, url: registration_path(resource_name) do |f| %>
-
-
-  <div class="field">
-    <%= f.label :名前 %>
-    (姓)<%= f.text_field :last_name, autofocus: true %>　(名)<%= f.text_field :first_name, autofocus: true %>
+  <div class="container">
+    <div class="table-responsive">
+      <table class="table table-borderless">
+        <form>
+          <tbody>
+            <tr>
+              <td><%= f.label :名前 %></td>
+              <td>（姓）</td>
+              <td><%= f.text_field :last_name, autofocus: true %></td>
+              <td>（名）</td>
+              <td><%= f.text_field :first_name, autofocus: true %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :フリガナ %></td>
+              <td>（セイ）</td>
+              <td><%= f.text_field :last_name_kana, autofocus: true %></td>
+              <td>（メイ）</td>
+              <td><%= f.text_field :first_name_kana, autofocus: true %></tsd>
+            <tr>
+              <td><%= f.label :メールアドレス %></td>
+              <td></td>
+              <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :郵便番号 %>（ハイフンなし）</td>
+              <td></td>
+              <td><%= f.text_field :postal_code, autofocus: true %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :住所 %></td>
+              <td></td>
+              <td colspan="3"><%= f.text_field :address, autofocus: true %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :電話番号 %>（ハイフンなし）</td>
+              <td></td>
+              <td><%= f.text_field :telephone_number, autofocus: true %></td>
+            </tr>
+            <tr>
+              <td>
+                <%= f.label :パスワード %>
+                <% if @minimum_password_length %>
+                  (<%= @minimum_password_length %> 文字以上)
+                <% end %>
+              </td>
+              <td></td>
+              <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :パスワード（確認用） %></td>
+              <td></td>
+              <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>
+                <div class="actions">
+                  <%= f.submit "新規登録", class: "btn btn-success btn-block" %>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+　      </form>
+      </table>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :フリガナ%>
-     (セイ)<%= f.text_field :last_name_kana, autofocus: true %>　(メイ)<%= f.text_field :first_name_kana, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :メールアドレス %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :郵便番号 %>
-    <%= f.text_field :postal_code, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :住所 %>
-    <%= f.text_field :address, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :電話番号 %>
-    <%= f.text_field :telephone_number, autofocus: true %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :パスワード %>
-    <% if @minimum_password_length %>
-     <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード（確認用） %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "新規登録", class: "btn btn-success" %>
-  </div>
-
-  <h2>既に登録済みの方</h2>
-  <p><%= render "public/shared/links" %>からログインしてください。</p>
-  <%= render "public/shared/error_messages", resource: resource %>
-
 <% end %>
+
+
+<div class="container">
+  <h3>既に登録済みの方</h3>
+    <p>　　<%= render "public/shared/links" %>からログインしてください。</p>
+    <%= render "public/shared/error_messages", resource: resource %>
+</div>
+

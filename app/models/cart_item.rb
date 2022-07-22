@@ -7,7 +7,7 @@ class CartItem < ApplicationRecord
   validates :item_id, :amount, presence: true
   validates :amount, numericality:{ only_integer: true }
 
-  def sum_of_price
+  def subtotal
     item.taxin_price * amount
   end
 

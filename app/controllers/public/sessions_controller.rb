@@ -22,7 +22,7 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
@@ -36,13 +36,14 @@ class Public::SessionsController < Devise::SessionsController
   ## アカウントを取得できなかった場合、このメソッドを終了する
    return if !@customer
   ## 【処理内容2】 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
-   if @customer.valid_password?(params[:customer][:password])
-    # && !@customer.is_deleted
-     flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
-        redirect_to new_customer_registration_path
-   else
-     flash[:notice] = "項目を入力してください"
-    ## 【処理内容3】
+   if @customer.valid_password?(params[:customer][:password]) && true
+     ## 【処理内容3】
+    # true && true == true
+      flash[:notice_taikai] = "退会済みです。再度ご登録をしてご利用ください。"
+      redirect_to new_customer_registration_path
+   else @customer.valid_password?(params[:customer][:password]) && false
+    # true && false == false
+      render :create
    end
   end
 end
