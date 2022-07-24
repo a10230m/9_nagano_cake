@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   namespace :public do
     resources :customers, only: [:index, :edit, :update, :destroy, :withdraw]
     resources :items, only: [:index, :show]
-    resources :cart_items, only: [:create, :index, :update, :destroy, :destroy_all]
+    resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all]
   end
 
   get '/customers/mypage' => 'public/customers#show'

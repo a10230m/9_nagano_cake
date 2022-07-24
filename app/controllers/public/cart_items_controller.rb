@@ -1,35 +1,58 @@
 class Public::CartItemsController < ApplicationController
 
-  # def new
-  #   @cart_item = Cart_item.new
-  # end
-
-  def create
-    # @cart_itemを定義（find_byでどの情報のアイテムを持ってくるのかパラメータを参考に記述）
-    @cart_item = CartItem.find_by(item_id: params[:cart_item][:item_id], customer_id: current_customer.id)
-    #初めて対象商品をカートに追加する場合
-      if @cart_item.blank?
-        @cart_item = CartItem.new(cart_items_params)
-      end
-    #すでに追加する商品がカートにある場合
-    @cart_item.amount += params[:cart_item][:amount].to_i
-    @cart_item.customer_id = current_customer.id
-    @cart_item.save
-    redirect_to cart_items_path
-  end
-
-
 
   def index
     @cart_items = current_customer.cart_items
-    @total = 0
-      # @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
+
+    end
   end
+
+
+
+  def create
+    @cart_item = CartItem.new(cart_item_params)
+    @cart_item.customer_id = current_customer.id
+    # 追加した商品がカート内に存在するかの判別
+    # 存在した場合
+    if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
+      cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
+      # カート内の個数をフォームから送られた個数分追加する
+      cart_item.amount += params[:cart_item][:amount].to_i
+      cart_item.save
+
+      redirect_to public_cart_items_path
+    # 存在しなかった場合
+    else
+      @cart_item.save
+      redirect_to public_cart_items_path
+    end
+  end
+
+
+
+  def update
+    @cart_item=CartItem.find(params[:id])
+    @cart_item.update(cart_item_params)
+    redirect_to  public_cart_items_path(cart_item.id)
+  end
+
+  def destroy
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
+    redirect_to public_cart_items_path
+  end
+
+  def all_destroy
+    @cart_items = current_customer.cart_items
+    @cart_items.destroy_all
+    redirect_to public_cart_items_path
+  end
+
 
   private
 
-    def cart_item_params
-      params.require(:cart_item).permit(:item_id, :amount)
-    end
+  def cart_item_params
+    params.require(:cart_item).permit(:customer_id, :item_id, :amount)
+  end
 
-end
+# end

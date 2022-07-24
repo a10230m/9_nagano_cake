@@ -28,6 +28,18 @@
             <td>税込価格（税抜価格）</td>
            <td><%= @item.price %>円</td>
           </tr>
+          <tr>
+            <td>
+              <div class="item_status">販売ステータス</div>
+  　    　　　　</td>
+  　　　   　　<td>
+  　           <% if @item.is_active %>
+    　           <p class="font-weight-bold text-success">販売中</p>
+    　         <% else %>
+    　          <p>販売停止中</p>
+    　        <% end %>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

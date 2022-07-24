@@ -1,11 +1,14 @@
 class Public::ItemsController < ApplicationController
 
+
+
   def index
     @items = Item.page(params[:page]).per(8)
     @item_count = Item.where(params[:item_id]).count
   end
 
   def show
+    @cart_item = CartItem.new
     @item = Item.find(params[:id])
     @customer = current_customer
   end

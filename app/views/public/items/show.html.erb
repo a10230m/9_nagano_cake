@@ -24,31 +24,15 @@
           </tr>
           <tr>
             <td>
-              <form class="form-inline">
-                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelect">
-                  <option selected>個数選択</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                </select>
-                <%= form_with model: @item, url: public_customer_path(@customer) do |f| %>
+                <%= form_with model: @cart_item, url: public_cart_items_path do |f| %>
+                <%= f.select :amount, *[1..10] %>
+
                   <% if customer_signed_in? %>
                     <%= f.hidden_field :customer_id, :value => current_customer.id %>
                   <% end %>
                     <%= f.hidden_field :item_id, :value => @item.id %>
-                    <%= link_to public_cart_items_path, class: "btn btn-success" do %>
-                      <%= f.submit "カートに入れる", class: "btn btn-success" %>
-                    <% end %>
+                    <%= f.submit "カートに入れる", class: "btn btn-success" %>
                 <% end %>
-
-              </form>
             </td>
           </tr>
         </tbody>

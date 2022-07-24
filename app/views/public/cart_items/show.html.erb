@@ -15,25 +15,31 @@
       </tr>
     </thead>
     <tbody>
-      <% sum = 0 %>
       <% @cart_items.each do |cart_item| %>
+      <%= @total = @total+ cart_item.subtotal %>
       <tr>
         <td>
-          <% if cart_item.item.image.attached? %>
-            <%= image_tag cart_item.item.image, size: "100x50", class: "item-image2" %>
+          <% if item.image.attached? %>
+            <%= image_tag item.image, size: "400x300", class: "item-image" %>
           <% else %>
-            <%= image_tag 'noimage', size: "100x50", class: "item-image2" %>
+            <%= image_tag 'noimage', size: "400x300", class: "item-image" %>
           <% end %>
-　　      <%= cart_item.item.name %>
+　　      <%= @item.name %>
         </td>
-        <td><%= cart_item.item.with_tax_price %></td>
-        <td><%= cart_item.amount %></td>
-        <td><%= cart_item.subtotal %></td>
+      <tr>
+        <td><%= @item.price %></td>
+      </tr>
+      <tr>
+        <td><%= @item.amount %></td>
+      </tr>
+      <tr>
+        <td><%= @total %></td>
+      </tr>
+      <tr>
         <td></td>
       </tr>
-      <% sum += cart_item.subtotal %>
+    <% end %>
     <% end %>
     </tbody>
   </table>
-  合計金額<%= sum %>
 </div>
