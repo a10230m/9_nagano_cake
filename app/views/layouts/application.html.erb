@@ -30,7 +30,8 @@
               <% if current_customer %>
                 <%= link_to "マイページ", customers_mypage_path, class: "btn btn-outline-secondary" %>
                 <%= link_to "商品一覧", public_items_path, class: "btn btn-outline-secondary" %>
-                <!--<　%= link_to "カート",  %>--><button type="button" class="btn btn-outline-secondary">カート</button>
+                <%= link_to "カート", public_cart_items_path, class: "btn btn-outline-secondary" %>
+                <!--<button type="button" class="btn btn-outline-secondary">カート</button>-->
                 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary" %>
               <% elsif current_admin %>
                 <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-secondary" %>

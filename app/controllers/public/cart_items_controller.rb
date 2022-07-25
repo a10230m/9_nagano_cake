@@ -3,10 +3,12 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = current_customer.cart_items
-
-    end
   end
 
+  # def create
+  #   binding.pry
+  #   @item = Item.find(cart_item_params[:item_id])
+  # end
 
 
   def create
@@ -33,7 +35,7 @@ class Public::CartItemsController < ApplicationController
   def update
     @cart_item=CartItem.find(params[:id])
     @cart_item.update(cart_item_params)
-    redirect_to  public_cart_items_path(cart_item.id)
+    redirect_to  public_cart_items_path
   end
 
   def destroy
@@ -42,11 +44,22 @@ class Public::CartItemsController < ApplicationController
     redirect_to public_cart_items_path
   end
 
-  def all_destroy
+# テキスト
+# Book.destroy_all
+# current_user.books.destroy_all
+
+  def destroy_all
     @cart_items = current_customer.cart_items
     @cart_items.destroy_all
     redirect_to public_cart_items_path
   end
+
+  # def destroy_all #カート内アイテム全部消去
+  #   @customer.cart_items.destroy_all
+  #   redirect_to cart_items_path
+  #   flash[:info] = 'カートを空にしました。'
+  # end
+
 
 
   private
@@ -55,4 +68,4 @@ class Public::CartItemsController < ApplicationController
     params.require(:cart_item).permit(:customer_id, :item_id, :amount)
   end
 
-# end
+end

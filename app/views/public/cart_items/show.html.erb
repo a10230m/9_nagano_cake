@@ -1,45 +1,45 @@
 
-<div class="container">
-  <h2>ショッピングカート</h2>
-</div>
+<!--<div class="container">-->
+<!--  <h2>ショッピングカート</h2>-->
+<!--</div>-->
 
-<div class="container">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">商品名</th>
-        <th scope="col">単価（税込）</th>
-        <th scope="col">数量</th>
-        <th scope="col">小計</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @cart_items.each do |cart_item| %>
-      <%= @total = @total+ cart_item.subtotal %>
-      <tr>
-        <td>
-          <% if item.image.attached? %>
-            <%= image_tag item.image, size: "400x300", class: "item-image" %>
-          <% else %>
-            <%= image_tag 'noimage', size: "400x300", class: "item-image" %>
-          <% end %>
-　　      <%= @item.name %>
-        </td>
-      <tr>
-        <td><%= @item.price %></td>
-      </tr>
-      <tr>
-        <td><%= @item.amount %></td>
-      </tr>
-      <tr>
-        <td><%= @total %></td>
-      </tr>
-      <tr>
-        <td></td>
-      </tr>
-    <% end %>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+<!--<div class="container">-->
+<!--  <table class="table table-bordered">-->
+<!--    <thead>-->
+<!--      <tr>-->
+<!--        <th scope="col">商品名</th>-->
+<!--        <th scope="col">単価（税込）</th>-->
+<!--        <th scope="col">数量</th>-->
+<!--        <th scope="col">小計</th>-->
+<!--        <th scope="col"></th>-->
+<!--      </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--      <%= form_with model: @cart_item, url: public_cart_items_path do |f| %>-->
+<!--      <% @cart_items.each do |cart_item| %>-->
+<!--      <%= @total = @total+ cart_item.subtotal %>-->
+<!--      <tr>-->
+<!--        <td>-->
+<!--          <% if item.image.attached? %>-->
+<!--            <%= image_tag item.image, size: "400x300", class: "item-image" %>-->
+<!--          <% else %>-->
+<!--            <%= image_tag 'noimage', size: "400x300", class: "item-image" %>-->
+<!--          <% end %>-->
+<!--　　      <%= @item.name %>-->
+<!--        </td>-->
+<!--        <td><%= @item.price %></td>-->
+<!--        <td>-->
+          <!--< %= @item.amount %>-->
+<!--          <%= f.select :@item.amount %>-->
+          <!--< %= f.select :amount, *[1..10] %>-->
+<!--        </td>-->
+<!--        <td><%= @total %></td>-->
+<!--        <td>-->
+<!--          <%= link_to "削除する", public_cart_item_path, class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %>-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--    <% end %>-->
+<!--    <% end %>-->
+<!--    </tbody>-->
+<!--  </table>-->
+<!--</div>-->
