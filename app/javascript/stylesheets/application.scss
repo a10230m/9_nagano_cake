@@ -3,17 +3,21 @@
 
 
 *{
-    box-sizing: border-box; /*余白や線を幅や高さに含める*/
+  box-sizing: border-box; /*余白や線を幅や高さに含める*/
 }
 
 body {
+  display: block;
   border: 2px dotted #8c8b8b;
   margin: 20px;
 }
 
 .header {
+  display: block;
   border-bottom: 2px dotted #8c8b8b;
 }
+
+
 
 .container {
   margin-top: 20px;
@@ -31,24 +35,27 @@ input[type="password"] {
 		width: 100%;
 }
 
-
-
-.text1 {
-  width: 25em;
-  margin: 0 auto;
+.table {
+  table-layout: fixed;
 }
 
-.text_1 {
-  font-size: large;
-}
 
-.text_number {
-  font-size: medium;
-}
+// .text1 {
+//   width: 25em;
+//   margin: 0 auto;
+// }
 
-.col-md-auto {
-  margin: 40px;
-}
+// .text_1 {
+//   font-size: large;
+// }
+
+// .text_number {
+//   font-size: medium;
+// }
+
+// .col-md-auto {
+//   margin: 40px;
+// }
 
 .col {
   margin: 20px;
@@ -57,6 +64,9 @@ input[type="password"] {
   white-space: nowrap;
 }
 
+.row-sum {
+  float: right;
+}
 
 .image {
   height: 60%;
@@ -74,6 +84,8 @@ input[type="password"] {
   object-fit: cover;
 }
 
-footer {
+
+.footer {
+  display: block;
   border-top: 2px dotted #8c8b8b;
 }

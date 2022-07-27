@@ -1,22 +1,27 @@
+<%= flash[:notice_destroy] %>
+
 
 <div class="container">
-  <h2>ショッピングカート</h2>
+  <div class="row">
+    <div class="col-auto mr-auto">
+      <h3>ショッピングカート</h3>
+    </div>
+    <div class="col-auto">
+      <%= link_to "カートを空にする", destroy_all_public_cart_items_path, class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    </div>
+  </div>
 </div>
 
-<!--< %= link_to "削除する", public_cart_item_path(cart_item.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %>-->
-<!--ここのパス直す-->
-<%= link_to "カートを空にする", destroy_all_public_cart_items_path, method: :delete, class: "btn btn-danger" %>
 
 <div class="container">
   <table class="table table-bordered">
-
     <thead>
       <tr>
-        <th scope="col-1">商品名</th>
-        <th scope="col-2">単価（税込）</th>
-        <th scope="col-3">数量</th>
-        <th scope="col-4">小計</th>
-        <th scope="col-5"></th>
+        <th scope="col">商品名</th>
+        <th scope="col">単価（税込）</th>
+        <th scope="col">数量</th>
+        <th scope="col">小計</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -46,5 +51,20 @@
     <% end %>
     </tbody>
   </table>
-  合計金額<%= sum %>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-auto mr-auto">
+      <%= link_to "買い物を続ける", public_items_path, class: "btn btn-primary" %>
+    </div>
+    <div class="col-auto">
+      <table class="table-bordered">
+      　<tbody>
+      　   <td colspan="2">合計金額</td>
+      　　  <td colspan="2"><%= sum %></td>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

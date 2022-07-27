@@ -31,7 +31,11 @@ Rails.application.routes.draw do
   namespace :public do
     resources :customers, only: [:index, :edit, :update, :destroy, :withdraw]
     resources :items, only: [:index, :show]
-    resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all]
+    resources :cart_items, only: [:index, :create, :update, :destroy] do
+      collection do
+        delete "destroy_all"   #パスが　all_destroy_cart_items_path, method: :delete　となる
+      end
+    end
   end
 
   get '/customers/mypage' => 'public/customers#show'
