@@ -30,17 +30,30 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :customers, only: [:index, :edit, :update, :destroy, :withdraw]
+
+
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :create, :update, :destroy] do
       collection do
         delete "destroy_all"   #パスが　all_destroy_cart_items_path, method: :delete　となる
       end
     end
+
+    resources :orders, only: [:new, :create, :index, :show]
+
+
   end
 
-  get '/customers/mypage' => 'public/customers#show'
-  get '/customers/confirm' => 'public/customers#confirm', as: 'confirm'
-  patch '/customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
+
+    get '/customers/mypage' => 'public/customers#show'
+    get '/customers/confirm' => 'public/customers#confirm', as: 'confirm'
+    patch '/customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
+    post '/orders/confirm' => 'public/orders#confirm', as: 'orders/confirm'
+    get '/orders/complete' => 'public/orders#complete', as: 'complete'
+
+
+
+
 
 
 

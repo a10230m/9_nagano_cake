@@ -3,9 +3,12 @@ class Order < ApplicationRecord
   has_one :order_details, dependent: :destroy
   belongs_to :customer
 
+  def subtotal
+    item.with_tax_price * amount
+  end
+
   enum payment_method: {
-    クレジットカード: 0,
-    銀行振込:1
+    credit_card: 0, transfer: 1
   }
 
   enum order_status: {

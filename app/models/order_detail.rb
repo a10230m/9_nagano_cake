@@ -10,4 +10,16 @@ class OrderDetail < ApplicationRecord
     製作完了:3
   }
 
+
+
+  def subtotal
+    item.with_tax_price * amount
+  end
+
+  # def total_price
+  #   order_details.sum do |order_detail|
+  #     order_detail.sub_total_price
+  # 　end
+  # end
+
 end
