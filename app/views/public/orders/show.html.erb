@@ -1,0 +1,91 @@
+注文履歴詳細
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <table class="table table-bordered">
+        <h4>注文情報</h4>
+        <tbody>
+          <tr>
+            <th scope="col">注文日</th>
+            <td><%= @order.created_at.strftime('%Y年%m月%d日') %></td>
+          </tr>
+          <tr>
+            <th scope="col">配送先</th>
+            <td>
+              〒<%= @order.postal_code %><br>
+	  		  	　　<%= @order.address %><br>
+	  			  　　<%= @order.name %>
+	  			  </td>
+          </tr>
+          <tr>
+            <th scope="col">支払方法</th>
+            <td><%= @order.payment_method_i18n %></td>
+          </tr>
+          <tr>
+            <th scope="col">ステータス</th>
+            <td><%= @order.order_status %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-4">
+      <table class="table table-bordered">
+        <h4>請求情報</h4>
+        <% sum = 0 %>
+        <% @order_items.each do |order_item| %>
+          <% sum += order_item.subtotal %>
+        <% end %>
+        <tbody>
+          <tr>
+            <th scope="col">商品合計</th>
+            <td><%= sum.to_i %></td>
+          </tr>
+          <tr>
+            <th scope="col">配送料</th>
+            <td>
+              <% @order.postage = 800 %>
+              <%= @order.postage %>
+	  	  		</td>
+          </tr>
+          <tr>
+            <th scope="col">ご請求額</th>
+            <td>
+              <% @order.amount_billed = @order.postage + sum.to_i %>
+                <%= @order.amount_billed %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <table class="table table-bordered">
+      <h4>注文内容</h4>
+      <thead>
+        <tr>
+          <th scope="col">商品</th>
+          <th scope="col">単価（税込）</th>
+          <th scope="col">個数</th>
+          <th scope="col">小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--< % subtotal = 0 %>-->
+        <% @order_items.each do |order_item| %>
+        <tr>
+          <td><%= order_item.item.name %></td>
+          <td><%= order_item.purchase_price %></td>
+          <td><%= order_item.amount %></td>
+          <td><%= order_item.subtotal %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

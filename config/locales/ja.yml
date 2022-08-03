@@ -1,12 +1,11 @@
-  ja:
-    enums:
-      order:
-        payment_method:
-          credit_card: "クレジットカード"
-          transfer: "銀行振込"
-          
-          
-          
+ja:
+  enums:
+    order:
+      payment_method:
+        credit_card: "クレジットカード"
+        transfer: "銀行振込"
+
+
   # ja: # 日本語の設定を行う
   #   enums: # enumの設定を行う
   #     [モデル名]:

@@ -16,6 +16,11 @@ class OrderDetail < ApplicationRecord
     item.with_tax_price * amount
   end
 
+
+  def with_tax_price
+    (price * 1.1).floor
+  end
+
   # def total_price
   #   order_details.sum do |order_detail|
   #     order_detail.sub_total_price

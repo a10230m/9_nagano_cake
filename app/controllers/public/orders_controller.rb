@@ -1,6 +1,11 @@
 class Public::OrdersController < ApplicationController
 
-
+# 管理者とログインユーザーのみ閲覧可
+# 	before_action :authenticate!
+# 退会済みユーザーは閲覧不可
+# 	before_action :customer_is_deleted
+# param[:id]が取得できない場合、閲覧不可
+# 	before_action :params_check, only: [:index]
 
   def new
     @order = Order.new
@@ -9,34 +14,42 @@ class Public::OrdersController < ApplicationController
 
 
   def confirm
-  @order = Order.new(order_params)
-  @order.postal_code = current_customer.postal_code
-  @order.address = current_customer.address
-  @order.name = current_customer.last_name + current_customer.first_name
-  @cart_items = current_customer.cart_items.all
-  end
+		@order = Order.new
+		@cart_items = current_customer.cart_items
+		@order.payment_method = params[:order][:payment_method]
+	    if params[:order][:address_option] == "0"
+			  @order.postal_code = current_customer.postal_code
+		  	@order.address = current_customer.address
+		# elsif params[:order][:address_option] == "1"
+		# 	@sta = params[:order][:order_address].to_i
+		# 	binding.pry
+		# 	@order_address = Address.find(@sta)
+		# 	@order.postal_code = @order_address.postal_code
+		# 	@order.order_address = @order_address.address
+		# 	@order.dear_name = @order_address.dear_name
+		  elsif params[:order][:address_option] == "2"
+			  @order.postal_code = params[:order][:postal_code]
+			  @order.address = params[:order][:address]
+			  @order.name = params[:order][:name]
+			end
+	end
 
 
   def create
-    order = Order.new(order_params)
-    order.save
-    @order_details = OrderDetail.new
-    @order_details.order_id = current_customer.order_ids
-    #現在、ログインしているユーザーのcart_itemを取ってくる。
+    @order = current_customer.orders.new(order_params)
+    @order.save
     @cart_items = current_customer.cart_items.all
-    #次に、each文で分解 (eachを使うことで、1個1個処理できる。)
-    @cart_items.each do |cart_item|
-      @order_details.item_id = cart_item.item.id
-      @order_details.purchase_price = cart_item.item.price
-      @order_details.amount = cart_item.amount
-      @order_details.save
-    end
-    #カート内の商品を全て削除
-    current_customer.cart_items.destroy_all
-    redirect_to complete_path
+      @cart_items.each do |cart_item|
+        @order_details = OrderDetail.new(order_detail_params)
+        @order_details.item_id = cart_item.item.id
+        @order_details.purchase_price = cart_item.item.price
+        @order_details.amount = cart_item.amount
+        @order_details.order_id = @order.id
+        @order_details.save
+      end
+      current_customer.cart_items.destroy_all
+      redirect_to complete_path
   end
-
-
 
 
   def complete
@@ -44,23 +57,27 @@ class Public::OrdersController < ApplicationController
 
 
   def index
-    @orders = current_customer.orders
+    @customer = current_customer
+    @orders = current_customer.orders.includes(:order_details, :items)
   end
 
 
   def show
     @order = Order.find(params[:id])
-    @order_items = @order.order_items
+    @order_items = @order.order_details
   end
 
 
 private
 
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :postage, :amount_billed, :purchase_price)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :postage,
+    :amount_billed, :purchase_price, :customer_id)
   end
 
-
+  def order_detail_params
+  params.permit(:item_id, :purchase_price, :amount, :order_id)
+  end
 
 
 end

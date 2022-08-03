@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     # 注文履歴一覧
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:index, :show]
+    resources :order_details, only: [:show]
+
   end
 
   namespace :public do
@@ -50,6 +53,8 @@ Rails.application.routes.draw do
     patch '/customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
     post '/orders/confirm' => 'public/orders#confirm', as: 'orders/confirm'
     get '/orders/complete' => 'public/orders#complete', as: 'complete'
+    get '/orders' => 'public/orders#index'
+    get '/orders/:id' => 'public/orders#show'
 
 
 

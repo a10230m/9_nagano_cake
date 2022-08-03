@@ -1,1 +1,34 @@
-<h2>製作ステータスの更新</h2>
+
+
+<h4>注文履歴詳細</h4>
+
+<div class="container">
+  <div class="row">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">商品名</th>
+          <th scope="col">単価（税込）</th>
+          <th scope="col">数量</th>
+          <th scope="col">小計</th>
+          <th scope="col">製作ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.item.name %></td>
+          <td><%= order.purchase_price %></td>
+          <% order.order_details.each do |order_detail| %><!--オーダーの中にあるオーダーディティールをだして、eachしていく-->
+            <td><% order_detail.amount %></td>
+          <% end %>
+          <td><%= cart_item.subtotal %></td>
+          <td><%= order_details.production_status %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <!--< %= paginate @orders %>-->
+  </div>
+</div>

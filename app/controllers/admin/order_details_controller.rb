@@ -1,7 +1,11 @@
 class Admin::OrderDetailsController < ApplicationController
 
 
+  def show
+    @order = Order.find(params[:id])
+  end
 
+  # 上のエラー解消させる
 
 
 
@@ -12,8 +16,6 @@ class Admin::OrderDetailsController < ApplicationController
   private
 
   def order_detail_params
-    params.require(:order_detail).permit(:item_id, :order_id, :purchase_price, :amount, :production_status)
+    params.require(:order_detail).permit(:item_id, :order_id, :purchase_price, :production_status, :amount)
   end
-
 end
-
