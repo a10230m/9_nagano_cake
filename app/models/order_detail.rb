@@ -3,15 +3,6 @@ class OrderDetail < ApplicationRecord
   belongs_to :item
   belongs_to :order
 
-  enum production_status: {
-    製作不可: 0,
-    製作待ち:1,
-    製作中:2,
-    製作完了:3
-  }
-
-
-
   def subtotal
     item.with_tax_price * amount
   end
@@ -21,10 +12,12 @@ class OrderDetail < ApplicationRecord
     (price * 1.1).floor
   end
 
-  # def total_price
-  #   order_details.sum do |order_detail|
-  #     order_detail.sub_total_price
-  # 　end
-  # end
+  enum production_status: {
+    production_not_possible: 0,
+    production_pending: 1,
+    in_production: 2,
+    production_complete: 3
+  }
+
 
 end

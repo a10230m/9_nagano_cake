@@ -1,1 +1,111 @@
-<h2>注文詳細画面（ステータス編集を兼ねる）</h2>
+
+<!--formwithを使って、updateアクション2種類を使い分ける
+最後にredirecttoでshowページに戻る-->
+
+
+<div class="container">
+  <h4>注文履歴詳細</h4>
+  <div class="row">
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <th scope="col">購入者</th>
+          <td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
+        </tr>
+        <tr>
+          <th scope="col">注文日</th>
+          <td><%= @order.created_at.strftime("%Y/%-m/%-d") %></td>
+        </tr>
+        <tr>
+          <th scope="col">配送先</th>
+          <td>
+            〒<%= @order.postal_code %><br>
+				　　<%= @order.address %><br>
+				　　<%= @order.name %>
+          </td>
+        </tr>
+        <tr>
+          <th scope="col">支払方法</th>
+          <td><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <th scope="col">注文ステータス</th>
+          <td>
+            <%= form_with model: @order, url: admin_order_path, method: :patch, local: true do |f| %>
+              <!--< %= f.select :order_status, Order.order_statuses.keys, class: "order_status" %>-->
+              <%= f.select :order_status, Order.order_statuses_i18n.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"),k]}, class: "order_status" %>
+              <!--enumのフォーム モデル名.statuses_i18n.keys.map {|k| [I18n.t("enumの記述.#{k}"),k]}-->
+              <%= f.submit "更新" , class: "btn btn-success" %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">商品名</th>
+            <th scope="col">単価（税込）</th>
+            <th scope="col">数量</th>
+            <th scope="col">小計</th>
+            <th scope="col">製作ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--< % subtotal = 0 %>-->
+          <% @order_items.each do |order_item| %>
+          <tr>
+            <td><%= order_item.item.name %></td>
+            <td><%= order_item.purchase_price %></td>
+            <td><%= order_item.amount %></td>
+            <td><%= order_item.subtotal %></td>
+            <td>
+              <%= form_with model: order_item, url: admin_order_detail_path(order_item) , method: :patch , local: true do |f| %>
+                <!--< %= f.select :order_details, OrderDetail.production_statuses %>-->
+                <%= f.select :production_status, OrderDetail.production_statuses_i18n.keys.map {|k| [I18n.t("enums.order_detail.production_status.#{k}"),k]} %>
+                <!--enum日本語化フォーム→モデル名.statuses_i18n.keys.map {|k| [I18n.t("enumの記述.#{k}"),k]}-->
+                <%= f.submit "更新", class: "btn btn-success" %>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-2">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <% sum = 0 %>
+            <% @order_items.each do |order_item| %>
+            <% sum += order_item.subtotal %>
+            <% end %>
+            <th>商品合計</th>
+            <td><%= (sum.to_i).to_s(:delimited) %>円</td>
+          </tr>
+          <tr>
+            <th>送料</th>
+            <td>
+              <% @order.postage = 800 %>
+              <%= (@order.postage).to_s(:delimited) %>円
+            </td>
+          </tr>
+          <tr>
+            <th>請求合計額</th>
+            <td>
+              <% @order.amount_billed = @order.postage + sum.to_i %>
+                <%= @order.amount_billed.to_s(:delimited) %>円
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

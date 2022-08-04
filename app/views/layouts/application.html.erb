@@ -32,7 +32,7 @@
               <% elsif current_admin %>
                 <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-secondary" %>
                 <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-secondary" %>
-                <!--<　%= link_to "注文履歴一覧",  %>--><button type="button" class="btn btn-outline-secondary">注文履歴一覧</button>
+                <%= link_to "注文履歴一覧", admin_path, class: "btn btn-outline-secondary" %>
                 <!--<　%= link_to "ジャンル一覧",  %>--><button type="button" class="btn btn-outline-secondary">ジャンル一覧</button>
                 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %>
               <% else %>
@@ -54,7 +54,7 @@
        <br />Q
     </div>
 
-    
+
   </body>
 </html>
 

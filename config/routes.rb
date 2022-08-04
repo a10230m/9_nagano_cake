@@ -24,10 +24,11 @@ Rails.application.routes.draw do
   # 管理者側のルーティング設定
   namespace :admin do
     # 注文履歴一覧
+    resources :homes, only: [:top]
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:index, :show]
-    resources :order_details, only: [:show]
+    resources :orders, only: [:index, :show, :update]
+    resources :order_details, only: [:update]
 
   end
 
@@ -47,7 +48,7 @@ Rails.application.routes.draw do
 
   end
 
-
+    get '/admin' => 'admin/homes#top'
     get '/customers/mypage' => 'public/customers#show'
     get '/customers/confirm' => 'public/customers#confirm', as: 'confirm'
     patch '/customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
@@ -55,6 +56,8 @@ Rails.application.routes.draw do
     get '/orders/complete' => 'public/orders#complete', as: 'complete'
     get '/orders' => 'public/orders#index'
     get '/orders/:id' => 'public/orders#show'
+    patch 'admin/orders/:id' => 'admin/order_details#update'
+
 
 
 

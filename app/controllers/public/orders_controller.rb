@@ -20,14 +20,7 @@ class Public::OrdersController < ApplicationController
 	    if params[:order][:address_option] == "0"
 			  @order.postal_code = current_customer.postal_code
 		  	@order.address = current_customer.address
-		# elsif params[:order][:address_option] == "1"
-		# 	@sta = params[:order][:order_address].to_i
-		# 	binding.pry
-		# 	@order_address = Address.find(@sta)
-		# 	@order.postal_code = @order_address.postal_code
-		# 	@order.order_address = @order_address.address
-		# 	@order.dear_name = @order_address.dear_name
-		  elsif params[:order][:address_option] == "2"
+		  else params[:order][:address_option] == "2"
 			  @order.postal_code = params[:order][:postal_code]
 			  @order.address = params[:order][:address]
 			  @order.name = params[:order][:name]
@@ -71,8 +64,7 @@ class Public::OrdersController < ApplicationController
 private
 
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :postage,
-    :amount_billed, :purchase_price, :customer_id)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :postage, :amount_billed, :purchase_price, :customer_id)
   end
 
   def order_detail_params
