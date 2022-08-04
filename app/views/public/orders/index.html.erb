@@ -1,4 +1,5 @@
 <div class="container">
+  <h4>注文履歴一覧</h4>
   <div class="row">
     <table class="table table-bordered">
       <thead class="thead-light">
@@ -17,17 +18,17 @@
           <th scope="row"><%= order.created_at.strftime('%Y/%m/%d') %></th>
           <td>
             〒<%= order.postal_code %><br>
-				　　<%= order.address %><br>
-				    <%= order.name %> 様
+            <%= order.address %><br>
+            <%= order.name %> 様
 				  </td>
           <td>
             <% order.items.each do |item| %>
               <%= item.name %><br>
             <% end %>
           </td>
-          <td><%= order.amount_billed %></td>
+          <td><%= (order.amount_billed).to_s(:delimited) %></td>
 
-          <td><%= order.order_status %></td>
+          <td><%= order.order_status_i18n %></td>
           <td><%= link_to "表示する", public_order_path(order.id), class: "btn btn-primary" %></td>
         </tr>
         <% end %>

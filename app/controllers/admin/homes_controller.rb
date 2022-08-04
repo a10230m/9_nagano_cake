@@ -2,7 +2,7 @@ class Admin::HomesController < ApplicationController
 
   def top
     # @orders = customer.orders.includes(:order_details)
-    @orders = Order.all
+    @orders = Order.page(params[:page])
   end
 
   private

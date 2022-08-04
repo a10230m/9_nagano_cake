@@ -23,11 +23,11 @@
               <% end %>
 　　          <%= cart_item.item.name %>
             </td>
-            <td><%= cart_item.item.with_tax_price %></td>
+            <td><%= (cart_item.item.with_tax_price).to_s(:delimited) %></td>
             <td><%= cart_item.amount %></td>
-            <td><%= cart_item.subtotal %></td>
+            <td><%= (cart_item.subtotal).to_s(:delimited) %></td>
           </tr>
-          <% sum += cart_item.subtotal %>
+          <% (sum += cart_item.subtotal).to_s(:delimited) %>
         <% end %>
         </tbody>
       </table>
@@ -44,13 +44,13 @@
           </tr>
           <tr>
             <th>商品合計</th>
-              <td><%= sum.to_i %></td>
+              <td><%= (sum.to_i).to_s(:delimited) %></td>
           </tr>
           <tr>
             <th>請求金額</th>
               <td>
                 <% @order.amount_billed = @order.postage + sum.to_i %>
-                  <%= @order.amount_billed %>
+                  <%= (@order.amount_billed).to_s(:delimited) %>
               </td>
           </tr>
         </tbody>
@@ -66,7 +66,7 @@
       </tr>
       <tr>
         <th>お届け先</th>
-        <td><%= @order.postal_code %></td>
+        <td>〒<%= @order.postal_code.to_s.insert(3, "-") %></td><br>
       </tr>
       <tr>
         <th></th>

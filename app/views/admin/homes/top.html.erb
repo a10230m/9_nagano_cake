@@ -24,11 +24,11 @@
             <% sum += order_detail.amount %><!--個数を計算させる-->
           <% end %>
           <td><%= sum %></td>
-          <td><%= order.order_status %></td>
+          <td><%= order.order_status_i18n %></td>
         </tr>
         <% end %>
       </tbody>
     </table>
-    <!--< %= paginate @orders %>-->
+    <%= paginate @orders %>
   </div>
 </div>
