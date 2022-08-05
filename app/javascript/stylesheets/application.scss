@@ -19,12 +19,32 @@ body {
 
 
 
+
 .container {
+  // display: flex;
+  // justify-content: center;
   margin-top: 20px;
 }
 
-input[type="text"] {
-		width: 100%;
+
+// ↓会員ログインページ
+
+.em1down {
+  text-indent: 1em;
+}
+
+.em7down {
+  text-indent: 7em;
+}
+
+// ↑ここまで
+
+
+
+// ...
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 input[type="email"] {
@@ -33,39 +53,6 @@ input[type="email"] {
 
 input[type="password"] {
 		width: 100%;
-}
-
-.table {
-  table-layout: fixed;
-}
-
-
-// .text1 {
-//   width: 25em;
-//   margin: 0 auto;
-// }
-
-// .text_1 {
-//   font-size: large;
-// }
-
-// .text_number {
-//   font-size: medium;
-// }
-
-// .col-md-auto {
-//   margin: 40px;
-// }
-
-.col {
-  margin: 20px;
-}
-.th .td {
-  white-space: nowrap;
-}
-
-.row-sum {
-  float: right;
 }
 
 .image {
