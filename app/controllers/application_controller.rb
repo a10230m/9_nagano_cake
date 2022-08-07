@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
 
-  # before_action :authenticate_customer!, except: [:top, :about]
+  before_action :authenticate_customer!, except: [:top, :about, :index]
   before_action :configure_sign_up_params, if: :devise_controller?
 
 

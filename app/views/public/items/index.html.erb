@@ -1,18 +1,18 @@
 
-
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <p class="text"><span class="text_1">商品一覧</span><span class="text_number"> (全<%= @item_count %>件)</span></p>
-    </div>
+  <div class="row row no-gutters">
+    <p>
+      <span class="span1">商品一覧</span>
+      <span class="span2">（全<%= @item_count %>件）</span>
+    </p>
   </div>
 </div>
 
 
 <div class="container">
-  <div class="row">
+  <div class="row row no-gutters">
     <% @items.each do |item| %>
-    <div class="col-md-3 px-3">
+    <div class="col-3 px-2 my-2">
       <div class="image">
         <% if item.image.attached? %>
           <%= image_tag item.image, size: "400x300", class: "item-image" %>

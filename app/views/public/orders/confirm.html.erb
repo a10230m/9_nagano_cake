@@ -1,14 +1,18 @@
-注文情報確認
+
+<div class="container">
+  <h4>注文情報確認</h4>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col-9">
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">商品名</th>
-            <th scope="col">単価（税込）</th>
-            <th scope="col">数量</th>
-            <th scope="col">小計</th>
+            <td class="col-3">商品名</td>
+            <td class="col-2">単価（税込）</td>
+            <td class="col-2">数量</td>
+            <td class="col-2">小計</td>
           </tr>
         </thead>
         <tbody>
@@ -36,52 +40,57 @@
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <th>送料</th>
-              <td>
-                <% @order.postage = 800 %>
-                  <%= @order.postage %>
-              </td>
+            <td class="col-2">送料</td>
+            <td class="col-1">
+              <% @order.postage = 800 %>
+                <%= @order.postage %>
+            </td>
           </tr>
           <tr>
-            <th>商品合計</th>
-              <td><%= (sum.to_i).to_s(:delimited) %></td>
+            <td class="col-2">商品合計</td>
+            <td class="col-1">
+              <%= (sum.to_i).to_s(:delimited) %>
+            </td>
           </tr>
           <tr>
-            <th>請求金額</th>
-              <td>
-                <% @order.amount_billed = @order.postage + sum.to_i %>
-                  <%= (@order.amount_billed).to_s(:delimited) %>
-              </td>
+            <td class="col-2">請求金額</td>
+            <td class="col-1">
+               <% @order.amount_billed = @order.postage + sum.to_i %>
+                <%= (@order.amount_billed).to_s(:delimited) %>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
+  </div>
 </div>
+
 <div class="container">
-  <table class="table table-borderless">
-    <tbody>
-      <tr>
-        <th>支払い方法</th>
-        <td><%= @order.payment_method_i18n %></td>
-      </tr>
-      <tr>
-        <th>お届け先</th>
-        <td>〒<%= @order.postal_code.to_s.insert(3, "-") %></td><br>
-      </tr>
-      <tr>
-        <th></th>
-        <td><%= @order.address %></td><br />
+  <div class="row">
+    <div class="col-2">
+      <h5 class="bold">支払方法</h5>
+    </div>
+    <div class="col-3">
+      <%= @order.payment_method_i18n %>
+    </div>
+  </div>
+</div>
 
-      </tr>
-      <tr>
-        <th></th>
-        <td><%= @order.name %></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <h5 class="bold">お届け先</h5>
+    </div>
+    <div class="col-10">
+      〒<%= @order.postal_code.to_s.insert(3, "-") %><br>
+      <%= @order.address %><br>
+      <%= @order.name %>
+    </div>
+  </div>
 </div>
 
 
+<div class="container">
 <%= form_with model: @order, url: public_orders_path, method: :post, local: true do |f| %>
   <%= f.hidden_field :customer_id %>
   <%= f.hidden_field :postage %>
@@ -91,5 +100,11 @@
   <%= f.hidden_field :address %>
   <%= f.hidden_field :postal_code %>
   <%= f.hidden_field :order_status %>
-  <%= f.submit "注文を確定する", class: "btn btn-success" %>
+  <div class="text-center">
+      <%= f.submit "注文を確定する", class: "btn btn-success" %>
+    </div>
 <% end %>
+</div>
+
+
+

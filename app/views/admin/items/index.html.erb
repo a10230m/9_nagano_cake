@@ -1,51 +1,47 @@
-
 <div class="container">
   <h2>商品一覧</h2>
 
-
-<div class="d-flex flex-row-reverse bd-highlight">
-  <div class="p-2 bd-highlight">
-    <h1><%= link_to "➕" , new_admin_item_path(@new) %></h1>
+  <div class="d-flex flex-row-reverse bd-highlight">
+    <div class="p-2 bd-highlight">
+      <h1><%= link_to "➕" , new_admin_item_path(@new) %></h1>
+    </div>
   </div>
-</div>
 
+  <div class="container">
+    <div class="row">
+      <div class="col-3 px-3">
+      <table class="table">
+        <thead>
+          <tr>
+      　     <th scope="col">商品ID</th>
+          　<th scope="col">商品名</th>
+          　<th scope="col">税抜価格</th>
+        　</tr>
+      　</thead>
 
-
-
-<div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-      　<th scope="col">商品ID</th>
-      　<th scope="col">商品名</th>
-      　<th scope="col">税抜価格</th>
-    　</tr>
-  　</thead>
-
-  　<tbody>
-    　<% @items.each do |item| %>
-    　<tr>
-      　<td>
-      　   <div class="item_id">
-      　     <%= item.id %>
-      　   </div>
-        </td>
-      　<td>
-      　   <div class="item_name">
-      　     <%= link_to item.name, admin_item_path(item.id) %>
-      　   </div>
-  　     </td>
-　      <td>
-　        <div class="item_price">
-　          <%= (item.price).to_s(:delimited) %>
-　        </div>
-　      </td>
-　    <% end %>
-  　</tbody>
-　</table>
-　<div class="d-flex justify-content-center">
-　  <%= paginate @items %>
-　</div>
-</div>
-
+      　<tbody>
+        　<% @items.each do |item| %>
+        　<tr>
+          　<td>
+          　   <div class="item_id"> <%= item.id %> </div>
+            </td>
+          　<td>
+          　   <div class="item_name">
+        　       <%= link_to item.name, admin_item_path(item.id) %>
+          　   </div>
+  　         </td>
+  　         <td>
+  　           <div class="item_price">
+  　             <%= (item.price).to_s(:delimited) %>
+  　           </div>
+  　         </td>
+  　       <% end %>
+  　     </tbody>
+  　   </table>
+  　   <div class="d-flex justify-content-center">
+  　     <%= paginate @items %>
+  　   </div>
+    </div>
+  </div>
+  </div>
 </div>

@@ -1,32 +1,37 @@
 
 <div class="container">
-  <div class="row">
-    <div class="col-6">
+  <div class="row row no-gutters">
+    <div class="col-2"></div>
+    <div class="col-4">
       <div class="form-group">
+        <div class="image">
         <% if @item.image.attached? %>
-          <%= image_tag @item.image, size: "400x300" %>
+          <%= image_tag @item.image, size: "400x300", class: "item-image" %>
         <% else %>
-          <%= image_tag 'noimage', size: "400x300" %>
+          <%= image_tag 'noimage', size: "400x300", class: "item-image" %>
         <% end %>
+        </div>
       </div>
     </div>
     <div class="col-6">
       <table class="table table-borderless">
         <tbody>
           <tr>
-            <td><%= @item.name %></td>
+            <td>
+              <h5 class="bold"><%= @item.name %></h5>
+            </td>
           </tr>
           <tr>
             <td><%= @item.introduction %></td>
           </tr>
           <tr>
-            <td>￥<%= (@item.with_tax_price).to_s(:delimited) %>（税込）</td>
+            <td>
+              <span class="span3">￥<%= (@item.with_tax_price).to_s(:delimited) %></span>（税込）</td>
           </tr>
           <tr>
             <td>
                 <%= form_with model: @cart_item, url: public_cart_items_path do |f| %>
-                <%= f.select :amount, *[1..10] %>
-
+                  <%= f.select :amount, *[1..10], include_blank: "個数選択　　" %>
                   <% if customer_signed_in? %>
                     <%= f.hidden_field :customer_id, :value => current_customer.id %>
                   <% end %>

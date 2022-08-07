@@ -1,85 +1,79 @@
 <%= flash[:notice_taikai] %>
-<br />
 
 <div class="container">
-  <h3>新規会員登録</h3>
+  <h4>新規会員登録</h4>
 </div>
 
-<!--< %= form_with model: customer, url: public_customer_path(), local: true do |f| %>-->
-<%= form_with model: resource, as: resource_name, url: registration_path(resource_name) do |f| %>
-  <div class="container">
-    <div class="table-responsive">
-      <table class="table table-borderless">
-        <form>
-          <tbody>
-            <tr>
-              <td><%= f.label :名前 %></td>
-              <td>（姓）</td>
-              <td><%= f.text_field :last_name, autofocus: true %></td>
-              <td>（名）</td>
-              <td><%= f.text_field :first_name, autofocus: true %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :フリガナ %></td>
-              <td>（セイ）</td>
-              <td><%= f.text_field :last_name_kana, autofocus: true %></td>
-              <td>（メイ）</td>
-              <td><%= f.text_field :first_name_kana, autofocus: true %></tsd>
-            <tr>
-              <td><%= f.label :メールアドレス %></td>
-              <td></td>
-              <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :郵便番号 %>（ハイフンなし）</td>
-              <td></td>
-              <td><%= f.text_field :postal_code, autofocus: true %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :住所 %></td>
-              <td></td>
-              <td colspan="3"><%= f.text_field :address, autofocus: true %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :電話番号 %>（ハイフンなし）</td>
-              <td></td>
-              <td><%= f.text_field :telephone_number, autofocus: true %></td>
-            </tr>
-            <tr>
-              <td>
-                <%= f.label :パスワード %>
-                <% if @minimum_password_length %>
-                  (<%= @minimum_password_length %> 文字以上)
-                <% end %>
-              </td>
-              <td></td>
-              <td><%= f.password_field :password, autocomplete: "new-password" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :パスワード（確認用） %></td>
-              <td></td>
-              <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>
-                <div class="actions">
-                  <%= f.submit "新規登録", class: "btn btn-success btn-block" %>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-　      </form>
-      </table>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+
+      <%= form_with model: resource, as: resource_name, url: registration_path(resource_name) do |f| %>
+
+      <div class="row row no-gutters form-group">
+        <%= f.label :名前, class: "col-2" %>
+        <%= f.label :"　　　（姓）", class: "col-2" %>
+        <%= f.text_field :last_name, autofocus: true, class: "col-3" %>
+        <%= f.label :"　　　（名）", class: "col-2" %>
+        <%= f.text_field :first_name, autofocus: true, class: "col-3" %>
+      </div>
+
+      <div class="row row no-gutters form-group">
+        <%= f.label :フリガナ, class: "col-2" %>
+        <%= f.label :"　　　（セイ）", class: "col-2" %>
+        <%= f.text_field :last_name_kana, autofocus: true, class: "col-3" %>
+        <%= f.label :"　　　（メイ）", class: "col-2" %>
+        <%= f.text_field :first_name_kana, autofocus: true, class: "col-3" %>
+      </div>
+
+      <div class="row row no-gutters form-group">
+        <%= f.label :メールアドレス, class: "col-4" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-3" %>
+      </div>
+
+      <div class="row row no-gutters form-group">
+        <%= f.label :"郵便番号（ハイフンなし）", class: "col-4" %>
+        <%= f.text_field :postal_code, autofocus: true, class: "col-3" %>
+      </div>
+
+      <div class="row row no-gutters form-group">
+        <%= f.label :住所, class: "col-lg-2" %>
+        <div class="col-2"></div>
+        <%= f.text_field :address, autofocus: true, class: "col-3" %>
+      </div>
+
+      <div class="row row no-gutters form-group">
+        <%= f.label :"電話番号（ハイフンなし）", class: "col-4" %>
+        <%= f.text_field :telephone_number, autofocus: true, class: "col-3" %>
+      </div>
+
+      <div class="row row no-gutters form-group">
+        <%= f.label :"パスワード（6文字以上）" , class: "col-4" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "col-3" %>
+      </div>
+
+      <div class="row row no-gutters form-group">
+        <%= f.label :"パスワード（確認用）", class: "col-4" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-3" %>
+      </div>
+
+      <div class="row row no-gutters form-group">
+        <div class="col-4"></div>
+        <div class="col-3">
+        <%= f.submit "新規登録", class: "btn btn-success btn-block" %>
+        </div>
+      </div>
+
+      <% end %>
+
     </div>
   </div>
-<% end %>
-
-
-<div class="container">
-  <h3>既に登録済みの方</h3>
-    <p>　　<%= render "public/shared/links" %>からログインしてください。</p>
-    <%= render "public/shared/error_messages", resource: resource %>
 </div>
 
+<div class="container">
+  <div class="text-left">
+    <h4>既に登録済みの方</h4>
+    <p class="em2down"><%= render "public/shared/links" %>からログインしてください。</p>
+    <%= render "public/shared/error_messages", resource: resource %>
+  </div>
+</div>

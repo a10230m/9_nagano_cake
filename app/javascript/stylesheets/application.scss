@@ -23,8 +23,49 @@ body {
 .container {
   // display: flex;
   // justify-content: center;
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
+
+// 太字
+.bold {
+  font-weight: bold;
+}
+
+.about {
+  font-size: 70px;
+
+}
+
+// 商品インデックス
+.span1 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.span2 {
+  font-size: 20px;
+}
+
+// 商品show
+.span3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+
+
+// topページ
+.welcomemessage {
+  position: center;
+}
+
+// ↓会員新規登録
+.em2down {
+  text-indent: 2em;
+}
+//
 
 
 // ↓会員ログインページ
@@ -39,21 +80,29 @@ body {
 
 // ↑ここまで
 
+// 注文情報入力
+.radio_button {
+  padding-left: 2em;
+}
 
+.newaddress {
+  padding-left: 3em;
+}
 
-// ...
-.input-group {
+.addressadd {
+  margin-bottom: 10px;
+}
+//
+
+// 注文完了
+.ordercomp {
+  height: 250px;
+  width: 100%;
   display: flex;
-  flex-wrap: wrap;
+　align-items: center;
+　justify-content: center;
 }
-
-input[type="email"] {
-		width: 100%;
-}
-
-input[type="password"] {
-		width: 100%;
-}
+//
 
 .image {
   height: 60%;
@@ -71,6 +120,14 @@ input[type="password"] {
   object-fit: cover;
 }
 
+th, td {
+  vertical-align: middle;
+  padding-left: 0;
+}
+
+.width {
+  width: 50px;
+}
 
 .footer {
   display: block;

@@ -1,25 +1,23 @@
-<%= flash[:logout] %>
+<p id="notice"><%= notice %></p>
 <br />
-<br />
-
 <div class="container">
-    <div class="col-md-auto">
-      <div class="text1">
-        ようこそ、ながのCAKEへ！<br>
-        このサイトは、ケーキ販売のECサイトになります。<br>
-        会員でない方も商品の閲覧はできますが、<br>
-        購入には会員登録が必要になります。<br>
-      </div>
+  <div class="row justify-content-center">
+    <div class="text-left">
+    ようこそ、ながのCAKEへ！<br>
+    このサイトは、ケーキ販売のECサイトになります。<br>
+    会員でない方も商品の閲覧はできますが、<br>
+    購入には会員登録が必要になります。<br>
     </div>
+  </div>
 </div>
 
 
 
 <div class="container">
-  <h3>新着商品</h3>
-    <div class="row">
+  <h3 class="bold">新着商品</h3>
+    <div class="row row no-gutters">
       <% @items.each do |item| %>
-      <div class="col-md-3 px-3">
+      <div class="col-3 px-2 my-2">
         <div class="image">
         <!--each分は単数形のみには使用しない-->
           <% if item.image.attached? %>
@@ -28,7 +26,7 @@
             <%= image_tag 'noimage', size: "400x300", class: "item-image" %>
           <% end %>
         </div>
-        <%= item.name %><br />
+         <%= link_to item.name, admin_item_path(item.id) %><br />
         <%= number_to_currency(item.with_tax_price, unit: "￥", strip_insignificant_zeros: true) %>
       </div>
       <% end %>

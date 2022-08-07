@@ -2,8 +2,7 @@ class Public::CartItemsController < ApplicationController
 
   #ログインユーザーのみ閲覧可
   before_action :authenticate_customer!
-# #退会済みユーザーは閲覧不可
-  before_action :customer_is_deleted
+
 
 
   def index
