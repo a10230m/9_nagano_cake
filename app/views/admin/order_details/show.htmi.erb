@@ -1,21 +1,23 @@
 
 <!--formwithを使って、updateアクション2種類を使い分ける
 最後にredirecttoでshowページに戻る-->
-
-<h4>注文履歴詳細</h4>
+<div class="container">
+  <h4>注文履歴詳細</h4>
+</div>
 
 <div class="container">
   <div class="row">
-    <table class="table table-bordered">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">商品名</th>
-          <th scope="col">単価（税込）</th>
-          <th scope="col">数量</th>
-          <th scope="col">小計</th>
-          <th scope="col">製作ステータス</th>
-        </tr>
-      </thead>
+    <div class="col-8">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th class="col-2">商品名</th>
+            <th class="col-2">単価（税込）</th>
+            <th class="col-2">数量</th>
+            <th class="col-2">小計</th>
+            <th class="col-2">製作ステータス</th>
+          </tr>
+        </thead>
       <tbody>
 
         <% @orders.each do |order| %>

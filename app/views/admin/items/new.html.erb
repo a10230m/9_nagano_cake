@@ -1,56 +1,54 @@
 <div class="container">
-  <h2>商品新規登録</h2>
+  <h4>商品新規登録</h4>
 </div>
 
 
 <div class="container">
-  <div class="d-flex align-items-center justify-content-center">
-    <%= form_with model:@item, url:admin_items_path, local:true do |f| %>
-    <table class="table table-borderless">
-      <tbody>
-        <tr>
-          <th>商品画像</th>
-          <td><%= f.file_field :image, accept: "image/*" %></td>
-        </tr>
-        <tr>
-          <th>商品名</th>
-          <td><%= f.text_field :name %></td>
-        </tr>
-        <tr>
-          <th>商品説明</th>
-          <td><%= f.text_area :introduction %></td>
-        </tr>
-        <tr>
-          <th>税抜価格</th>
-          <td><%= f.text_field :price %>円</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="row row no-gutters justify-content-center">
+    <div class="col-12">
+      <%= form_with model:@item, url:admin_items_path, local:true do |f| %>
 
+      <div class="row row no-gutters form-group">
+        <div class="col-2"></div>
+        <%= f.label :商品画像, class: "col-2" %>
+        <%= f.file_field :image, accept: "image/*", class: "col-4" %>
+      </div>
 
-    <!--<div class="form-group">-->
-    <!--  <label for="item_image">商品画像</label>-->
-    <!--  < %= f.file_field :image, accept: "image/*" %>-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-    <!--  <label for="item_name">商品名</label>-->
-    <!--  < %= f.text_field :name %>-->
-    <!--</div>-->
+      <div class="row row no-gutters form-group">
+        <div class="col-2"></div>
+        <%= f.label :商品名, class: "col-2" %>
+        <%= f.text_field :name, class: "col-4" %>
+      </div>
 
-    <!--<div class="form-group">-->
-    <!--  <label for="item_introduction">商品説明</label>-->
-    <!--  < %= f.text_area :introduction %>-->
-    <!--</div>-->
+      <div class="row row no-gutters form-group">
+        <div class="col-2"></div>
+        <%= f.label :商品説明, class: "col-2" %>
+        <%= f.text_area :introduction, class: "col-4" %>
+      </div>
 
-    <!--<div class="form-group">-->
-    <!--  <label for="item_price">税抜価格</label>-->
-    <!--  < %= f.text_field :price %>円-->
-    <!--</div>-->
+      <div class="row row no-gutters form-group">
+        <div class="col-2"></div>
+        <%= f.label :税抜価格, class: "col-2" %>
+        <%= f.text_field :price, class: "col-4" %> 円
+      </div>
 
+      <div class="row row no-gutters form-group">
+        <div class="col-2"></div>
+        <%= f.label :販売ステータス, class: "col-2" %>
+      　<div class="col-4">
+        　<%= f.radio_button "is_active", "true", id: "radio1" %>
+      　   　<label for="radio1">販売中</label>
+        　<%= f.radio_button "is_active", "false", id: "radio2" %>
+        　　<label for="radio2">販売停止中</label>
+        </div>
+      </div>
 
-    <div class="d-flex justify-content-center">
-      <%= f.submit "新規登録", class: "btn btn-success" %>
+      <div class="container">
+        <div class="text-center">
+          <%= f.submit "新規登録", class: "btn btn-success" %>
+        </div>
+      </div>
+      <% end %>
     </div>
-    <% end %>
   </div>
 </div>

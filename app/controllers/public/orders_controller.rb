@@ -1,11 +1,6 @@
 class Public::OrdersController < ApplicationController
 
-# 管理者とログインユーザーのみ閲覧可
-# 	before_action :authenticate!
-# 退会済みユーザーは閲覧不可
-# 	before_action :customer_is_deleted
-# param[:id]が取得できない場合、閲覧不可
-# 	before_action :params_check, only: [:index]
+  before_action :authenticate_customer!
 
   def new
     @order = Order.new
@@ -69,7 +64,7 @@ private
   end
 
   def order_detail_params
-  params.permit(:item_id, :purchase_price, :amount, :order_id)
+    params.permit(:item_id, :purchase_price, :amount, :order_id)
   end
 
 

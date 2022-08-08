@@ -26,11 +26,11 @@ class Public::CartItemsController < ApplicationController
       cart_item.amount += params[:cart_item][:amount].to_i
       cart_item.save
 
-      redirect_to public_cart_items_path
+      redirect_to cart_items_path
     # 存在しなかった場合
     else
       @cart_item.save
-      redirect_to public_cart_items_path
+      redirect_to cart_items_path
     end
   end
 
@@ -39,13 +39,13 @@ class Public::CartItemsController < ApplicationController
   def update
     @cart_item = CartItem.find(params[:id])
     @cart_item.update(cart_item_params)
-    redirect_to  public_cart_items_path
+    redirect_to  cart_items_path
   end
 
   def destroy
     @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
-    redirect_to public_cart_items_path
+    redirect_to cart_items_path
   end
 
 # テキスト
@@ -55,8 +55,8 @@ class Public::CartItemsController < ApplicationController
   def destroy_all
       @cart_items = current_customer.cart_items
       @cart_items.destroy_all
-      redirect_to public_cart_items_path
-      flash[:notice_destroy] = "カートを空にしました"
+      redirect_to cart_items_path
+      flash[:notice_destroy] = "カートを空にしました。"
   end
 
   # def destroy_all #カート内アイテム全部消去

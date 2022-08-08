@@ -4,6 +4,69 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get '/about' => 'homes#about'
 
+  # 管理者用
+  # URL /admin/sign_in ...
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+    sessions: "admin/sessions"
+  }
+
+
+
+  # 管理者側のルーティング設定
+  namespace :admin do
+    # 注文履歴一覧
+    root to: 'homes#top'
+    # patch 'orders/:id' => 'order_details#update'
+    resources :homes, only: [:top]
+    resources :items, only: [:new, :create, :index, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:index, :show, :update]
+    resources :order_details, only: [:update]
+  end
+
+
+
+# public
+    scope module: :public do
+      # post '/customers' => 'customers#create'
+
+      get '/items' => 'items#index'
+      get '/items/:id' => 'items#show', as: 'item'
+
+
+      resource :customers, only:[:edit, :update] do
+        collection do
+          get 'mypage' => 'customers#show', as: 'mypage'
+          get :confirm
+          patch 'withdraw' => 'customers#withdraw', as: 'withdraw'
+        end
+      end
+      # get '/customers/mypage' => 'customers#show'
+      # get '/customers/mypage/edit' => 'customers#edit', as: 'customer'
+      # patch '/customers/mypage' => 'customers#update'
+      # get '/customers/confirm' => 'customers#confirm', as: 'confirm'
+      # patch '/customers/withdraw' => 'customers#withdraw', as: 'withdraw'
+
+      get '/cart_items' => 'cart_items#index', as: 'cart_items'
+      post '/cart_items' => 'cart_items#create'
+      patch '/cart_items/:id' => 'cart_items#update', as: 'cart_item'
+      delete '/cart_items/:id' => 'cart_items#destroy'
+      delete '/cart_items' => 'cart_items#destroy_all', as: 'destroy_all'
+
+      get '/orders/new' => 'orders#new'
+      post '/orders/confirm' => 'orders#confirm', as: 'orders/confirm'
+      get '/orders/complete' => 'orders#complete', as: 'complete'
+      post '/orders' => 'orders#create'
+      get '/orders' => 'orders#index'
+      get '/orders/:id' => 'orders#show', as: 'order'
+
+
+
+
+
+    end
+
+
 
   # 会員側のルーティング設定
 
@@ -13,52 +76,6 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-
-  # 管理者用
-  # URL /admin/sign_in ...
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-    sessions: "admin/sessions"
-  }
-
-
-  # 管理者側のルーティング設定
-  namespace :admin do
-    # 注文履歴一覧
-    resources :homes, only: [:top]
-    resources :items, only: [:new, :create, :index, :show, :edit, :update]
-    resources :customers, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:index, :show, :update]
-    resources :order_details, only: [:update]
-
-  end
-
-  namespace :public do
-    resources :customers, only: [:index, :edit, :update, :destroy, :withdraw]
-
-
-    resources :items, only: [:index, :show]
-    resources :cart_items, only: [:index, :create, :update, :destroy] do
-      collection do
-        delete "destroy_all"   #パスが　all_destroy_cart_items_path, method: :delete　となる
-      end
-    end
-
-    resources :orders, only: [:new, :create, :index, :show]
-
-
-  end
-
-    get '/admin' => 'admin/homes#top'
-    get '/customers/mypage' => 'public/customers#show'
-    get '/customers/confirm' => 'public/customers#confirm', as: 'confirm'
-    patch '/customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
-    post '/orders/confirm' => 'public/orders#confirm', as: 'orders/confirm'
-    get '/orders/complete' => 'public/orders#complete', as: 'complete'
-    get '/orders' => 'public/orders#index'
-    get '/orders/:id' => 'public/orders#show'
-    patch 'admin/orders/:id' => 'admin/order_details#update'
-
-
 
 
 

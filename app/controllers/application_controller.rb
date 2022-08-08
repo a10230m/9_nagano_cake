@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
 
-  before_action :authenticate_customer!, except: [:top, :about, :index]
+
   before_action :configure_sign_up_params, if: :devise_controller?
 
 
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     when Admin
       admin_items_path
     when Customer
-      customers_mypage_path
+      mypage_customers_path
     end
   end
 

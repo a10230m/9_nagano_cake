@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-
+  before_action :authenticate_customer!
 
   def new
     @customer = Customer.new
@@ -8,7 +8,7 @@ class Public::CustomersController < ApplicationController
   def create
     @customer = Customer.new(item_params)
     if @customer.save
-      redirect_to public_customer_path(customer.id)
+      redirect_to customer_path(customer.id)
     else
       render :new
     end
@@ -28,7 +28,8 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     @customer.update(customer_params)
-    redirect_to customers_mypage_path(@customer)
+    redirect_to mypage_customers_path
+    # (＠customer)はURLniコロンがあるかで判断
   end
 
   def withdraw

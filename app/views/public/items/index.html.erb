@@ -20,7 +20,7 @@
           <%= image_tag 'noimage', size: "400x300", class: "item-image" %>
         <% end %>
       </div>
-      <%= link_to item.name, public_item_path(item.id) %><br />
+      <div class="bold"><%= link_to item.name, item_path(item.id) %></div>
       ￥<%= (item.with_tax_price).to_s(:delimited) %>
     </div>
     <% end %>

@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 <br />
 <div class="container">
   <div class="row justify-content-center">
@@ -26,13 +26,13 @@
             <%= image_tag 'noimage', size: "400x300", class: "item-image" %>
           <% end %>
         </div>
-         <%= link_to item.name, admin_item_path(item.id) %><br />
+        <div class="bold"><%= link_to item.name, item_path(item.id) %></div>
         <%= number_to_currency(item.with_tax_price, unit: "￥", strip_insignificant_zeros: true) %>
       </div>
       <% end %>
     </div>
     <p class="text-right">
-      <%= link_to "全ての商品を見る > ", public_items_path(current_customer) %>
+      <%= link_to "全ての商品を見る > ", items_path(current_customer) %>
 　　</p>
 </div>
 
