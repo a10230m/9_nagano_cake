@@ -9,11 +9,6 @@ class Public::CartItemsController < ApplicationController
     @cart_items = current_customer.cart_items
   end
 
-  # def create
-  #   binding.pry
-  #   @item = Item.find(cart_item_params[:item_id])
-  # end
-
 
   def create
     @cart_item = CartItem.new(cart_item_params)
@@ -58,12 +53,6 @@ class Public::CartItemsController < ApplicationController
       redirect_to cart_items_path
       flash[:notice_destroy] = "カートを空にしました。"
   end
-
-  # def destroy_all #カート内アイテム全部消去
-  #   @customer.cart_items.destroy_all
-  #   redirect_to cart_items_path
-  #   flash[:info] = 'カートを空にしました。'
-  # end
 
 
 

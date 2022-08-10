@@ -1,4 +1,4 @@
-<%= flash[:notice_destroy] %>
+
 
 
 <div class="container">
@@ -58,7 +58,7 @@
 <div class="container">
   <div class="row row no-gutters justify-content-between align-items-center">
     <div class="col-4">
-      <%= link_to "買い物を続ける", items_path, class: "btn btn-primary" %>
+      <%= link_to "買い物を続ける", top_path, class: "btn btn-primary" %>
     </div>
     <div class="col-4">
       <table class="table-bordered">
@@ -73,9 +73,12 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="text-center">
-    <%= link_to "情報入力に進む", orders_new_path, class: "btn btn-success" %>
+<% if @cart_items.blank? %>
+  <% else %>
+  <div class="container">
+    <div class="text-center">
+      <%= link_to "情報入力に進む", orders_new_path, class: "btn btn-success" %>
+    </div>
   </div>
-</div>
+  <% end %>
 <br />

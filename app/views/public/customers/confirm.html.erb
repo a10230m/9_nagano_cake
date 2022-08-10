@@ -16,8 +16,8 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="btn-group">
-      <button class="btn"><%= link_to "　退会しない　", customers_mypage_path(@customer), class: "btn btn-primary" %></button>
-      <button class="btn"><%= link_to "　 退会する 　", withdraw_path(@customer), method: :patch, class: "btn btn-danger" %></button>
+      <button class="btn"><%= link_to "　退会しない　", mypage_customers_path(@customer), class: "btn btn-primary" %></button>
+      <button class="btn"><%= link_to "　 退会する 　", withdraw_customers_path(@customer), method: :patch, class: "btn btn-danger" %></button>
     </div>
   </div>
 </div>
